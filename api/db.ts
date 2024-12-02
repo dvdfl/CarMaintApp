@@ -21,12 +21,24 @@ const database = {
                  ];
 
         },
-        addVehicle:  function(vehicle) {
+        addVehicle:  (vehicle) => {
             vehicle.id = (new Date()).getTime().toString();
             vehicle.services = [];
             vehicles.push(vehicle);
             return vehicle;
         },
+        updateVehicle: (vehicle) =>{
+            const onFile = database.fetchVehicle(vehicle.id);
+            console.log("== Updating vehicle in DB== ");
+            console.log(vehicle);
+
+            onFile.carMake = vehicle.carMake;
+            onFile.carModel = vehicle.carModel;
+            onFile.carYear = vehicle.carYear;
+            onFile.carMileage = vehicle.carMileage;
+
+
+            },
         fetchVehicles : () => {
             return vehicles;
             },

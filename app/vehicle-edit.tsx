@@ -1,4 +1,5 @@
 import { Link } from 'expo-router';
+import { useState } from 'react';
 import { Dimensions, Image, StyleSheet, ScrollView, Text, TextInput,
     TouchableHighlight, View, TouchableOpacity, Button } from "react-native";
 import { useNavigation, useRoute } from "@react-navigation/native"
@@ -14,17 +15,23 @@ export default function viewVehicle() {
     const lockIcon = require("../assets/images/react-logo.png");
 
     const vehicle = database.fetchVehicle(route.params.id);
+    const [carMake, setCarMake] = useState(vehicle.carMake);
+    const [carModel, setCarModel] = useState(vehicle.carModel);
+    const [carYear, setCarYear] = useState(vehicle.carYear);
+    const [carMileage, setCarMileage] = useState(vehicle.carMileage);
+
     console.log("=== Vehicle Edit ===");
     console.log("Vehicle ID: " + route.params?.id);
     console.log(vehicle);
   const addVehicleHandler = () => {
        //setCarMake("Submitted");
-       const data = database.addVehicle({
-           carMake,
-           carModel,
-           carYear,
-           carMileage
-           });
+       const data = database.updateVehicle({
+           id: vehicle.id,
+              carMake,
+              carModel,
+              carYear,
+              carMileage
+              });
        console.log(data);
        navigation.navigate('vehicles');
       };
@@ -33,6 +40,7 @@ export default function viewVehicle() {
         {/* <ImageBackground source={background} style={styles.background} resizeMode="cover">*/}
           <View style={AppStyles.markWrap}>
             <Image source={mark} style={styles.mark} resizeMode="contain" />
+            <Text></Text>
           </View>
           <View style={styles.wrapper}>
             <View style={styles.inputWrap}>
@@ -40,8 +48,8 @@ export default function viewVehicle() {
                 <Image source={personIcon} style={styles.icon} resizeMode="contain" />
               </View>
               <TextInput
-                value={vehicle.carMake}
-                //onChangeText={(text) => setCarMake(text)}
+                value={carMake}
+                onChangeText={(text) => setCarMake(text)}
                 placeholder="Make"
                 placeholderTextColor="green"
                 style={styles.input}
@@ -52,8 +60,8 @@ export default function viewVehicle() {
                 <Image source={lockIcon} style={styles.icon} resizeMode="contain" />
               </View>
               <TextInput
-                value={vehicle.carModel}
-                //onChangeText={(text) => setCarModel(text)}
+                value={carModel}
+                onChangeText={(text) => setCarModel(text)}
                 placeholderTextColor="green"
                 placeholder="Model"
                 style={styles.input}
@@ -65,8 +73,8 @@ export default function viewVehicle() {
                 <Image source={lockIcon} style={styles.icon} resizeMode="contain" />
               </View>
               <TextInput
-                value={vehicle.carYear}
-                //onChangeText={(text) => setCarYear(text)}
+                value={carYear}
+                onChangeText={(text) => setCarYear(text)}
                 placeholderTextColor="green"
                 placeholder="Year"
                 inputMode="numeric"
@@ -80,8 +88,8 @@ export default function viewVehicle() {
                 <Image source={lockIcon} style={styles.icon} resizeMode="contain" />
               </View>
               <TextInput
-                value={vehicle.carMileage}
-                //onChangeText={(text) => setCarMileage(text)}
+                value={carMileage}
+                onChangeText={(text) => setCarMileage(text)}
                 placeholderTextColor="green"
                 placeholder="Mileage"
                 inputMode="numeric"
