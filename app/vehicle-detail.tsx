@@ -1,6 +1,7 @@
 import { Link } from 'expo-router';
 import { StyleSheet, ScrollView, Text, TouchableHighlight, View, Button } from "react-native";
 import { useNavigation, useRoute } from "@react-navigation/native"
+import { TouchListItem } from '@/components/ListItem';
 import database from '../api/db';
 import AppStyles from './AppStyles'
 
@@ -30,17 +31,14 @@ export default function viewVehicle() {
                 <Text></Text>
                {vehicle.services.map((service) => {
                  return  (
-                     <TouchableHighlight
-                        key={service.id}
-                        onPress={() => onPress(service.id)}
-                        style={AppStyles.carItem}>
-                        <View>
-                            <Text style={ AppStyles.carItemTitle }>
-                                 {service.description}
-                            </Text>
-                            <Text>Performed on {service.serviceDate}</Text>
-                        </View>
-                     </TouchableHighlight>
+                     <TouchListItem key={service.id} itemKey={service.id}
+                             itemStyle={AppStyles.carItem}
+                             titleStyle={ AppStyles.carItemTitle }
+                             touchHandler= {onPress}
+                             titleText = {service.description}
+                             subText = {' Performed on' + service.serviceDate }
+                         >
+                      </TouchListItem>
                  );
                })}
 

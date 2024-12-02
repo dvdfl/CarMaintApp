@@ -3,6 +3,7 @@ import { Link } from 'expo-router';
 import { Image, StyleSheet} from 'react-native';
 import { RefreshControl, ScrollView, Text, View, Button } from "react-native";
 import database from '../api/db';
+import { BasicListItem } from '@/components/ListItem';
 
 /*const data = {
                  "fetchPrevious":
@@ -46,11 +47,13 @@ export default function Index() {
         </View>
         <View style={styles.serviceItem}>
                {database.fetchUpcoming().map((service) => {
-                return <View key={service.id}>
-                <Link
-                   href={{ pathname: './service-detail', params: { id: service.id}}}
-                   style={ styles.serviceItemText }>{service.description} </Link>
-                </View>;
+                return <BasicListItem
+                           key={service.id}
+                           pathname={'./service-detail'}
+                           params={ {id: service.id} }
+                           style={styles.serviceItemText}
+                           mainText={service.description}
+                          ></BasicListItem>;
               })}
         </View>
 
@@ -59,11 +62,13 @@ export default function Index() {
         </View>
         <View style={styles.serviceItem}>
                {database.fetchPrevious().map((service) => {
-                 return <View key={service.id}>
-                 <Link
-                    href={{ pathname: './service-detail', params: { id: service.id}}}
-                    style={ styles.serviceItemText }>{service.description} </Link>
-                 </View>;
+                 return <BasicListItem
+                           key={service.id}
+                           pathname={'./service-detail'}
+                           params={ {id: service.id} }
+                           style={styles.serviceItemText}
+                           mainText={service.description}
+                          ></BasicListItem>;
                })}
         </View>
         <Link href="vehicles" style={ styles.button }>Vehicles </Link>

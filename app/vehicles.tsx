@@ -1,6 +1,7 @@
 import { Link } from 'expo-router';
 import { StyleSheet, ScrollView, Text, TouchableHighlight, View, Button } from "react-native";
 import { useNavigation } from '@react-navigation/native';
+import { TouchListItem } from '@/components/ListItem';
 import database from '../api/db';
 import AppStyles from './AppStyles'
 
@@ -14,8 +15,9 @@ export default function Vehicles() {
         <View style={AppStyles.container}>
            <ScrollView style={AppStyles.scrollView}>
                 <View>
-                   {database.fetchVehicles().map((car) => {
+                   {/*{database.fetchVehicles().map((car) => {
                      return  (
+
                          <TouchableHighlight
                             key={car.id}
                             onPress={() => onPress(car.id)}
@@ -28,7 +30,20 @@ export default function Vehicles() {
                             </View>
                          </TouchableHighlight>
                      );
-                   })}
+                   })}*/}
+
+                    {database.fetchVehicles().map((car) => {
+                                         return  (
+                                             <TouchListItem itemKey={car.id}
+                                                    itemStyle={AppStyles.carItem}
+                                                    titleStyle={ AppStyles.carItemTitle }
+                                                    touchHandler= {onPress}
+                                                    titleText = {car.carMake + ' ' + car.carModel + ' (' + car.carYear +')'}
+                                                    subText = {car.carMileage + ' mi'}
+                                                >
+                                             </TouchListItem>
+                                         );
+                                       })}
                 </View>
                 <Text></Text>
                 <Link href="vehicle-add" style={ AppStyles.button }> Add Vehicle </Link>
