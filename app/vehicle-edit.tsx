@@ -40,9 +40,9 @@ export default function viewVehicle() {
         {/* <ImageBackground source={background} style={styles.background} resizeMode="cover">*/}
           <View style={AppStyles.markWrap}>
             <Image source={mark} style={styles.mark} resizeMode="contain" />
-            <Text></Text>
           </View>
-          <View style={styles.wrapper}>
+          <View style={AppStyles.formWrapper}>
+            <Text style={{ textAlign: 'center'}}>Please update your vehicle information</Text>
             <View style={styles.inputWrap}>
               <View style={styles.iconWrap}>
                 <Image source={personIcon} style={styles.icon} resizeMode="contain" />
@@ -98,26 +98,11 @@ export default function viewVehicle() {
                 // secureTextEntry
               />
             </View>
-            <TouchableOpacity activeOpacity={.5}>
-              <View>
-                <Text style={styles.forgotPasswordText}>Forgot Password?</Text>
-              </View>
-            </TouchableOpacity>
             <TouchableOpacity activeOpacity={.5} onPress={addVehicleHandler}>
-              <View style={styles.button}>
-                <Text style={styles.buttonText}>Update Vehicle</Text>
+              <View style={AppStyles.button}>
+                <Text style={AppStyles.buttonText}>Update Vehicle</Text>
               </View>
             </TouchableOpacity>
-          </View>
-          <View style={styles.container}>
-            <View style={styles.signupWrap}>
-              <Text style={styles.accountText}>Don't have an account?</Text>
-              <TouchableOpacity activeOpacity={.5}>
-                <View>
-                  <Text style={styles.signupLinkText}>Create Account</Text>
-                </View>
-              </TouchableOpacity>
-            </View>
           </View>
         {/*</ImageBackground> */}
       </View>
@@ -125,14 +110,12 @@ export default function viewVehicle() {
 }
 
 const styles = StyleSheet.create({
-  markWrap: {
-    flex: 1,
-    paddingVertical: 30,
-  },
+
   mark: {
     width: null,
     height: null,
     minHeight: 80,
+    maxHeight: 150,
     flex: 1,
   },
   background: {
@@ -164,34 +147,4 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 16
   },
-  button: {
-    backgroundColor: "#FF3366",
-    paddingVertical: 20,
-    alignItems: "center",
-    justifyContent: "center",
-    marginTop: 30,
-  },
-  buttonText: {
-    color: "#FFF",
-    fontSize: 18,
-  },
-  forgotPasswordText: {
-    color: "#D8D8D8",
-    backgroundColor: "transparent",
-    textAlign: "right",
-    paddingRight: 15,
-  },
-  signupWrap: {
-    backgroundColor: "transparent",
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  accountText: {
-    color: "#D8D8D8"
-  },
-  signupLinkText: {
-    color: "#FFF",
-    marginLeft: 5,
-  }
 });

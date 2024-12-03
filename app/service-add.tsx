@@ -1,6 +1,6 @@
 import { Link } from 'expo-router';
 import { useState, useRef  } from 'react'
-import { Button, Image, StyleSheet, ScrollView, Text, TextInput, TouchableHighlight, View } from "react-native";
+import { Button, Image, StyleSheet, ScrollView, Text, TextInput, TouchableHighlight, TouchableOpacity, View } from "react-native";
 import { useNavigation, useRoute } from "@react-navigation/native"
 import database from '../api/db';
 import AppStyles from './AppStyles';
@@ -46,116 +46,122 @@ export default function addVehicleService() {
     //console.log(navigation.params?.id);
     return (
         <View style={AppStyles.container}>
-           <ScrollView style={AppStyles.scrollView}>
-                <View style={styles.markWrap}>
+
+                <View style={AppStyles.markWrap}>
                     <Image source={serviceIcon} style={styles.mark} resizeMode="contain" />
-                  </View>
-                <View>
+                 </View>
+                 <View style={AppStyles.formWrapper}>
+                    <Text style={{ textAlign: 'center'}}>Please enter your vehicle information</Text>
+                    {/*<View>
+                        <Text>
+                            Service for:
+                        </Text>
+                        <Text style={AppStyles.carItemTitle}>
+                            {vehicle.carMake} {vehicle.carModel} ({vehicle.carYear})
+                        </Text>
+                        <Text></Text>
+                    </View>*/}
+                    <View style={styles.inputWrap}>
+                      <View style={styles.iconWrap}>
+                        <Image source={personIcon} style={styles.icon} resizeMode="contain" />
+                      </View>
+                      <TextInput
+                        value={serviceDate}
+                        onChangeText={(text) => setServiceDate(text)}
+                        onFocus={(e)=>{e.currentTarget.blur(); setShowCalendar(true); }}
+                        placeholder="Date of service"
+                        placeholderTextColor="#9B835D"
+                        style={styles.input}
+                        inputMode={'none'}
+                      />
+                        {showCalendar && (<DateTimePicker
+                            value={serviceDateObject}
+                            onChange={updateDate}
+                            onError={()=>console.log("cancelled")}
+                        />)}
+                    </View>
+                    <View style={styles.inputWrap}>
+                      <View style={styles.iconWrap}>
+                        <Image source={personIcon} style={styles.icon} resizeMode="contain" />
+                      </View>
+                      <TextInput
+                        value={description}
+                        onChangeText={(text) => setDescription(text)}
+                        placeholder="Description of the service"
+                        placeholderTextColor="#9B835D"
+                        style={styles.input}
+                       />
+                    </View>
+                    <View style={styles.inputWrap}>
+                      <View style={styles.iconWrap}>
+                        <Image source={personIcon} style={styles.icon} resizeMode="contain" />
+                      </View>
+                      <TextInput
+                        value={cost}
+                        onChangeText={(text) => setCost(text)}
+                        placeholder="Cost"
+                        placeholderTextColor="#9B835D"
+                        style={styles.input}
+                        inputMode="numeric"
+                       />
+                    </View>
+                    <View style={styles.inputWrap}>
+                      <View style={styles.iconWrap}>
+                        <Image source={personIcon} style={styles.icon} resizeMode="contain" />
+                      </View>
+                      <TextInput
+                        value={mileage}
+                        onChangeText={(text) => setMileage(text)}
+                        placeholder="Mileage"
+                        placeholderTextColor="#9B835D"
+                        style={styles.input}
+                        inputMode="numeric"
+                       />
+                    </View>
                     <Text></Text>
-                    <Text
-                        style={AppStyles.carItemTitle} >
-                        Adding service for:
-                    </Text>
-                    <Text>
-                        {vehicle.carMake} {vehicle.carModel} ({vehicle.carYear})
-                    </Text>
-                </View>
-                <View style={styles.inputWrap}>
-                  <View style={styles.iconWrap}>
-                    <Image source={personIcon} style={styles.icon} resizeMode="contain" />
+                <TouchableOpacity activeOpacity={.5} onPress={saveService}>
+                  <View style={AppStyles.button}>
+                    <Text style={AppStyles.buttonText}>Save Service</Text>
                   </View>
-                  <TextInput
-                    value={serviceDate}
-                    onChangeText={(text) => setServiceDate(text)}
-                    onFocus={(e)=>{e.currentTarget.blur(); setShowCalendar(true); }}
-                    placeholder="Date of service"
-                    placeholderTextColor="green"
-                    style={styles.input}
-                    inputMode={'none'}
-                  />
-                    {showCalendar && (<DateTimePicker
-                        value={serviceDateObject}
-                        onChange={updateDate}
-                        onError={()=>console.log("cancelled")}
-                    />)}
-                </View>
-                <View style={styles.inputWrap}>
-                  <View style={styles.iconWrap}>
-                    <Image source={personIcon} style={styles.icon} resizeMode="contain" />
-                  </View>
-                  <TextInput
-                    value={description}
-                    onChangeText={(text) => setDescription(text)}
-                    placeholder="Description of the service"
-                    placeholderTextColor="green"
-                    style={styles.input}
-                   />
-                </View>
-                <View style={styles.inputWrap}>
-                  <View style={styles.iconWrap}>
-                    <Image source={personIcon} style={styles.icon} resizeMode="contain" />
-                  </View>
-                  <TextInput
-                    value={cost}
-                    onChangeText={(text) => setCost(text)}
-                    placeholder="Cost"
-                    placeholderTextColor="green"
-                    style={styles.input}
-                    inputMode="numeric"
-                   />
-                </View>
-                <View style={styles.inputWrap}>
-                  <View style={styles.iconWrap}>
-                    <Image source={personIcon} style={styles.icon} resizeMode="contain" />
-                  </View>
-                  <TextInput
-                    value={mileage}
-                    onChangeText={(text) => setMileage(text)}
-                    placeholder="Mileage"
-                    placeholderTextColor="green"
-                    style={styles.input}
-                    inputMode="numeric"
-                   />
-                </View>
-                <Text></Text>
-                <Button
-                    style={AppStyles.button}
-                    title=" Save"
-                    onPress={saveService}
-                    />
-           </ScrollView>
+                </TouchableOpacity>
+            </View>
         </View>
     );
 }
 
 const styles = StyleSheet.create({
-      iconWrap: {
+    markWrap: {
+        flex: 2,
+        paddingVertical: 10,
+    },
+    iconWrap: {
         paddingHorizontal: 7,
         alignItems: "center",
         justifyContent: "center",
-      },
-      icon: {
+    },
+    icon: {
         height: 20,
         width: 20,
-      },
-      input: {
+    },
+    input: {
         flex: 1,
         paddingHorizontal: 10,
         fontWeight: 'bold',
         fontSize: 16
-      },
-        inputWrap: {
-          flexDirection: "row",
-          marginVertical: 10,
-          height: 40,
-          borderBottomWidth: 1,
-          borderBottomColor: "#CCC"
-        },
-       mark: {
-         width: null,
-         height: null,
-         minHeight: 80,
-         flex: 1,
-       },
+    },
+    inputWrap: {
+      flexDirection: "row",
+      marginVertical: 10,
+      height: 40,
+      borderBottomWidth: 1,
+      borderBottomColor: "#CCC"
+    },
+    mark: {
+     width: null,
+     height: null,
+     minHeight: 80,
+     maxHeight: 150,
+     flex: 1,
+    },
 
   });

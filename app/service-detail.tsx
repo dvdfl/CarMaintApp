@@ -1,5 +1,6 @@
+import { Link } from 'expo-router';
 import { useNavigation, useRoute } from "@react-navigation/native"
-import { StyleSheet, ScrollView, Text, TouchableHighlight, View, Button } from "react-native";
+import { Button, Image, StyleSheet, ScrollView, Text, TouchableHighlight, View } from "react-native";
 import AppStyles from './AppStyles'
 import database from '../api/db';
 
@@ -14,16 +15,25 @@ export default function viewService() {
     const today = new Date();
     const [month, day, year] = service.serviceDate.split('/').map(Number);
     const serviceDate = new Date(year, month - 1, day);
+    const editIcon = require("../assets/images/edit-icon.png");
 
     return (
         <View style={AppStyles.container}>
-          <ScrollView style={AppStyles.scrollView}>
+          <ScrollView style={[AppStyles.scrollView, AppStyles.subContainer]}>
                <View>
-                   <Text
-                       style={AppStyles.screenTitle} >
-                       {service.description}
-                   </Text>
-
+                    <View style={AppStyles.flexRow}>
+                        <Text
+                           style={[AppStyles.screenTitle, { flex: 5}]} >
+                           {service.description}
+                        </Text>
+                       <Link
+                            href={{ pathname: './service-edit', params: { id: service.id}}}
+                          >
+                            <View style={[AppStyles.iconWrap, { flex: 1, marginTop: 5}]}>
+                                    <Image source={editIcon} style={AppStyles.icon30} resizeMode="contain" />
+                            </View>
+                       </Link>
+                    </View>
                    {(serviceDate < today)?
                        <Text style={AppStyles.detailSection}>Performed on: {service.serviceDate} **</Text>
                    :
@@ -52,11 +62,10 @@ export default function viewService() {
                    : <View />
                }
 
-
-               <Text></Text>
-
           </ScrollView>
-
         </View>
     );
 }
+const styles = StyleSheet.create({
+
+  });

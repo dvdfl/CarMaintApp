@@ -2,6 +2,7 @@ import { Stack } from 'expo-router';
 import { useState } from 'react'
 import { useNavigation } from '@react-navigation/native';
 import database from '../api/db';
+import AppStyles from './AppStyles'
 
 import {   StyleSheet,
            Text,
@@ -37,12 +38,13 @@ export default function addVehicle() {
        navigation.navigate('vehicles');
       };
   return (
-    <View style={styles.container}>
+    <View style={AppStyles.container}>
             {/* <ImageBackground source={background} style={styles.background} resizeMode="cover">*/}
-              <View style={styles.markWrap}>
-                <Image source={mark} style={styles.mark} resizeMode="contain" />
+              <View style={AppStyles.markWrap}>
+                <Image source={mark} style={AppStyles.mark} resizeMode="contain" />
               </View>
               <View style={styles.wrapper}>
+                <Text style={{ textAlign: 'center'}}>Please enter your vehicle information</Text>
                 <View style={styles.inputWrap}>
                   <View style={styles.iconWrap}>
                     <Image source={personIcon} style={styles.icon} resizeMode="contain" />
@@ -51,7 +53,7 @@ export default function addVehicle() {
                     value={carMake}
                     onChangeText={(text) => setCarMake(text)}
                     placeholder="Make"
-                    placeholderTextColor="green"
+                    placeholderTextColor="#9B835D"
                     style={styles.input}
                   />
                 </View>
@@ -62,10 +64,9 @@ export default function addVehicle() {
                   <TextInput
                     value={carModel}
                     onChangeText={(text) => setCarModel(text)}
-                    placeholderTextColor="green"
+                    placeholderTextColor="#9B835D"
                     placeholder="Model"
                     style={styles.input}
-                    // secureTextEntry
                   />
                 </View>
                 <View style={styles.inputWrap}>
@@ -75,12 +76,11 @@ export default function addVehicle() {
                   <TextInput
                     value={carYear}
                     onChangeText={(text) => setCarYear(text)}
-                    placeholderTextColor="green"
+                    placeholderTextColor="#9B835D"
                     placeholder="Year"
                     inputMode="numeric"
                     maxLength={4}
                     style={styles.input}
-                    // secureTextEntry
                   />
                 </View>
                 <View style={styles.inputWrap}>
@@ -90,59 +90,31 @@ export default function addVehicle() {
                   <TextInput
                     value={carMileage}
                     onChangeText={(text) => setCarMileage(text)}
-                    placeholderTextColor="green"
+                    placeholderTextColor="#9B835D"
                     placeholder="Mileage"
                     inputMode="numeric"
                     maxLength={6}
                     style={styles.input}
-                    // secureTextEntry
                   />
                 </View>
-                <TouchableOpacity activeOpacity={.5}>
-                  <View>
-                    <Text style={styles.forgotPasswordText}>Forgot Password?</Text>
-                  </View>
-                </TouchableOpacity>
                 <TouchableOpacity activeOpacity={.5} onPress={addVehicleHandler}>
-                  <View style={styles.button}>
-                    <Text style={styles.buttonText}>Add Vehicle</Text>
+                  <View style={AppStyles.button}>
+                    <Text style={AppStyles.buttonText}>Add Vehicle</Text>
                   </View>
                 </TouchableOpacity>
               </View>
-              <View style={styles.container}>
-                <View style={styles.signupWrap}>
-                  <Text style={styles.accountText}>Don't have an account?</Text>
-                  <TouchableOpacity activeOpacity={.5}>
-                    <View>
-                      <Text style={styles.signupLinkText}>Create Account</Text>
-                    </View>
-                  </TouchableOpacity>
-                </View>
-              </View>
-            {/*</ImageBackground> */}
+
           </View>
     );
 }
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  markWrap: {
-    flex: 1,
-    paddingVertical: 30,
-  },
-  mark: {
-    width: null,
-    height: null,
-    minHeight: 80,
-    flex: 1,
-  },
   background: {
     width,
     height,
   },
   wrapper: {
     paddingVertical: 30,
+
   },
   inputWrap: {
     flexDirection: "row",
@@ -166,34 +138,4 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 16
   },
-  button: {
-    backgroundColor: "#FF3366",
-    paddingVertical: 20,
-    alignItems: "center",
-    justifyContent: "center",
-    marginTop: 30,
-  },
-  buttonText: {
-    color: "#FFF",
-    fontSize: 18,
-  },
-  forgotPasswordText: {
-    color: "#D8D8D8",
-    backgroundColor: "transparent",
-    textAlign: "right",
-    paddingRight: 15,
-  },
-  signupWrap: {
-    backgroundColor: "transparent",
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  accountText: {
-    color: "#D8D8D8"
-  },
-  signupLinkText: {
-    color: "#FFF",
-    marginLeft: 5,
-  }
 });

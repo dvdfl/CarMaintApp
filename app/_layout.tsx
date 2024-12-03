@@ -5,9 +5,9 @@ export default function RootLayout() {
   return (
     <Stack screenOptions={{
                    headerStyle: {
-                     backgroundColor: '#0077b6',
+                     backgroundColor: '#F2CEA2',
                    },
-                   headerTintColor: '#fff',
+                   headerTintColor: '#260F01',
                    headerTitleStyle: {
                      fontWeight: 'bold',
                    },
@@ -16,9 +16,14 @@ export default function RootLayout() {
              options={{
                       title: 'Welcome'
                       }}/>
+
       <Stack.Screen name="vehicles"
              options={{
                       title: 'Your Vehicles'
+                      }}/>
+      <Stack.Screen name="vehicle-edit"
+             options={{
+                      title: 'Edit Vehicle'
                       }}/>
       <Stack.Screen name="vehicle-add"
              options={{
@@ -26,15 +31,20 @@ export default function RootLayout() {
                       }}/>
       <Stack.Screen name="vehicle-detail"
              options={{
-                      title: 'Vehicle detail'
+                      title: 'Vehicle Detail'
                       }}/>
+
       <Stack.Screen name="service-add"
              options={{
-                      title: 'Vehicle detail'
+                      title: 'Add Service'
                       }}/>
       <Stack.Screen name="service-detail"
              options={{
-                      title: 'Service detail'
+                      title: 'Service Detail'
+                      }}/>
+      <Stack.Screen name="service-edit"
+             options={{
+                      title: 'Edit Service'
                       }}/>
     </Stack>
   );
