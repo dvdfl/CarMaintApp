@@ -37,6 +37,9 @@ export default StyleSheet.create({
  label: {
      fontWeight: 'bold'
      },
+ alignCenter: {
+     textAlign: "center",
+     },
  detailSection: {
       marginTop: 10,
       paddingBottom: 5,
@@ -56,8 +59,23 @@ export default StyleSheet.create({
      //padding: 10,
      paddingVertical: 20,
      textAlign: "center",
-     marginTop: 30,
+     marginTop: 20,
      },
+ buttonAlt: {
+      color: "#260F01",
+      fontWeight: "bold",
+      fontSize: 15,
+      //backgroundColor: "#6c757d",
+      backgroundColor: "#F2EAC2",
+      borderColor: "#260F01",
+      borderRadius: 8,
+      //border: "1px solid transparent",
+      borderWidth: 2,
+      //padding: 10,
+      paddingVertical: 13,
+      textAlign: "center",
+      marginTop: 20,
+      },
  buttonText: {
      color: "#FFF",
      fontSize: 18,
@@ -78,7 +96,7 @@ export default StyleSheet.create({
   markWrap: {
     flex: 1,
     paddingVertical: 10,
-    backgroundColor: 'pink'
+    //backgroundColor: 'pink'
   },
   mark: {
     width: null,
@@ -87,4 +105,14 @@ export default StyleSheet.create({
     maxHeight: 150,
     flex: 1,
   },
+  section: {
+      backgroundColor: '#8C837B',
+      padding: 8,
+      marginTop: 20,
+      marginBottom: 10,
+  },
+  sectionText: {
+      color: '#F2EAC2',
+      fontSize: 15,
+  }
 });

@@ -32,7 +32,7 @@ export default function viewVehicle() {
               carYear,
               carMileage
               });
-       console.log(data);
+
        navigation.navigate('vehicles');
       };
   return (

@@ -51,7 +51,7 @@ export default function addVehicleService() {
                     <Image source={serviceIcon} style={styles.mark} resizeMode="contain" />
                  </View>
                  <View style={AppStyles.formWrapper}>
-                    <Text style={{ textAlign: 'center'}}>Please enter your vehicle information</Text>
+                    <Text style={{ textAlign: 'center'}}>Please enter your vehicle's service information</Text>
                     {/*<View>
                         <Text>
                             Service for:

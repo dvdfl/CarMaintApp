@@ -7,21 +7,25 @@ import AppStyles from './AppStyles'
 import { BasicListItem } from '@/components/ListItem';
 
 export default function Index() {
-     const [refreshing, setRefreshing] = React.useState(false);
+     const [refreshing, setRefreshing] = React.useState(true);
 
-      const onRefresh = React.useCallback(() => {
+     const onRefresh = React.useCallback(() => {
         setRefreshing(true);
         setTimeout(() => {
           setRefreshing(false);
         }, 2000);
       }, []);
+
+    database.loadData().then(()=>{
+        console.log("data loaded");
+        console.log(database.fetchVehicles());
+        setRefreshing(false);
+        });
     console.log("== Index ==");
-    console.log(database.fetchVehicles());
-    console.log(database.fetchPrevious());
+
   return (
     <View
-      style={AppStyles.container}
-    >
+      style={AppStyles.container} >
       <ScrollView style={[AppStyles.scrollView, AppStyles.subContainer]}
         refreshControl={
               <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
@@ -57,8 +61,8 @@ export default function Index() {
         </View>
 
       </ScrollView>
-        <Link href="vehicles" style={ AppStyles.button }>Vehicles </Link>
-        <Text></Text>
+        {/*<Link href="vehicles" style={ AppStyles.button }>Vehicles </Link>
+        <Text></Text>*/}
     </View>
   );
 }
@@ -87,6 +91,8 @@ const styles = StyleSheet.create({
       backgroundColor: "#8C837B",
       padding: 10,
       marginTop: 20,
+      borderTopLeftRadius: 8,
+      borderTopRightRadius: 8,
       },
   sectionHeaderText: {
       color: 'white',

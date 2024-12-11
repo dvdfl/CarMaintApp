@@ -1,7 +1,10 @@
-import { Stack } from "expo-router";
-import { Image, StyleSheet } from 'react-native';
+import { Link, Stack } from "expo-router";
+import { Image, StyleSheet, View } from 'react-native';
 
-export default function RootLayout() {
+export default function RootLayout(props) {
+  const addCarIcon = require("../assets/images/transport.png");
+  const carIcon = require("../assets/images/car.png");
+  const accountIcon = require("../assets/images/account.png");
   return (
     <Stack screenOptions={{
                    headerStyle: {
@@ -14,12 +17,35 @@ export default function RootLayout() {
                  }}>
       <Stack.Screen name="index"
              options={{
-                      title: 'Welcome'
+                      title: 'Welcome',
+                      headerRight: ()=> <View style={{ flexDirection: 'row' }}><Link
+                                      style={{paddingBottom:10, paddingRight: 25, marginTop: -5}}
+                                      href="vehicles">
+                                      <Image source={carIcon}
+                                          style={{ height: 35, width: 35 }} resizeMode="cover" />
+                                   </Link>
+                                   <Link
+                                         style={{paddingBottom:10, paddingRight: 5, marginTop: -5}}
+                                         href="account">
+                                         <Image source={accountIcon}
+                                             style={{ height: 35, width: 35 }} resizeMode="cover" />
+                                      </Link>
+                                   </View>,
                       }}/>
-
+      <Stack.Screen name="account"
+             options={{
+                      title: 'Account'
+                      }}/>
       <Stack.Screen name="vehicles"
              options={{
-                      title: 'Your Vehicles'
+                      title: 'Your Vehicles',
+                      //headerTitle: ()=> <Text>Your Vehicles</Text>,
+                      headerRight: ()=> <Link
+                                            style={{paddingBottom:10, paddingRight: 5, marginTop: -5}}
+                                            href="vehicle-add">
+                                            <Image source={addCarIcon}
+                                                style={{ height: 35, width: 35 }} resizeMode="cover" />
+                                         </Link>,
                       }}/>
       <Stack.Screen name="vehicle-edit"
              options={{
@@ -40,7 +66,7 @@ export default function RootLayout() {
                       }}/>
       <Stack.Screen name="service-detail"
              options={{
-                      title: 'Service Detail'
+                      title: 'Service Detail',
                       }}/>
       <Stack.Screen name="service-edit"
              options={{

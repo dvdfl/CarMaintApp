@@ -14,9 +14,9 @@ import {   StyleSheet,
            TouchableOpacity } from 'react-native';
 const { width, height } = Dimensions.get("window");
 const background = require("../assets/images/icon.png");
-const mark = require("../assets/images/car.png");
-const lockIcon = require("../assets/images/react-logo.png");
-const personIcon = require("../assets/images/favicon.png");
+const carIcon = require("../assets/images/car.png");
+const reactLogo = require("../assets/images/react-logo.png");
+const favIcon = require("../assets/images/favicon.png");
 
 export default function addVehicle() {
   const [carMake, setCarMake] = useState("");
@@ -41,13 +41,13 @@ export default function addVehicle() {
     <View style={AppStyles.container}>
             {/* <ImageBackground source={background} style={styles.background} resizeMode="cover">*/}
               <View style={AppStyles.markWrap}>
-                <Image source={mark} style={AppStyles.mark} resizeMode="contain" />
+                <Image source={carIcon} style={AppStyles.mark} resizeMode="contain" />
               </View>
               <View style={styles.wrapper}>
                 <Text style={{ textAlign: 'center'}}>Please enter your vehicle information</Text>
                 <View style={styles.inputWrap}>
                   <View style={styles.iconWrap}>
-                    <Image source={personIcon} style={styles.icon} resizeMode="contain" />
+                    <Image source={favIcon} style={styles.icon} resizeMode="contain" />
                   </View>
                   <TextInput
                     value={carMake}
@@ -59,7 +59,7 @@ export default function addVehicle() {
                 </View>
                 <View style={styles.inputWrap}>
                   <View style={styles.iconWrap}>
-                    <Image source={lockIcon} style={styles.icon} resizeMode="contain" />
+                    <Image source={reactLogo} style={styles.icon} resizeMode="contain" />
                   </View>
                   <TextInput
                     value={carModel}
@@ -71,7 +71,7 @@ export default function addVehicle() {
                 </View>
                 <View style={styles.inputWrap}>
                   <View style={styles.iconWrap}>
-                    <Image source={lockIcon} style={styles.icon} resizeMode="contain" />
+                    <Image source={reactLogo} style={styles.icon} resizeMode="contain" />
                   </View>
                   <TextInput
                     value={carYear}
@@ -85,7 +85,7 @@ export default function addVehicle() {
                 </View>
                 <View style={styles.inputWrap}>
                   <View style={styles.iconWrap}>
-                    <Image source={lockIcon} style={styles.icon} resizeMode="contain" />
+                    <Image source={reactLogo} style={styles.icon} resizeMode="contain" />
                   </View>
                   <TextInput
                     value={carMileage}
